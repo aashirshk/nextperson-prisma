@@ -9,22 +9,16 @@ generator client {
     binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
-
-  //added directUrl for Vercel Neon 
-
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection which is required by Vercel Neon
-
+    provider = "postgresql"
+    url = env("DATABASE_URL")
+    directUrl = env("POSTGRES_URL_NON_POOLING")
 }
-
-
-
 
 model Person {
   id        Int     @id @default(autoincrement())
   firstname String
   lastname  String
   phone     String
+  date_of_birth DateTime @default(now())
 }

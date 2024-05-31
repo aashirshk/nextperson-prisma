@@ -18,6 +18,7 @@ const PersonTable: React.FC<PersonTableProps> = ({ people, handleOpen, handleDel
           <TableCell>First Name</TableCell>
           <TableCell>Last Name</TableCell>
           <TableCell>Phone</TableCell>
+          <TableCell>DOB</TableCell>
           <TableCell>Actions</TableCell>
         </TableRow>
       </TableHead>
@@ -27,6 +28,7 @@ const PersonTable: React.FC<PersonTableProps> = ({ people, handleOpen, handleDel
             <TableCell>{person.firstname}</TableCell>
             <TableCell>{person.lastname}</TableCell>
             <TableCell>{person.phone}</TableCell>
+            <TableCell>{person.date_of_birth?.toString()}</TableCell>
             <TableCell>
               <Button onClick={() => handleOpen(person)}>Edit</Button>
               <Button onClick={() => handleDelete(person.id)}>Delete</Button>
