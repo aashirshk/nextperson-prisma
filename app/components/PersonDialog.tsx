@@ -1,4 +1,4 @@
-//'use client'
+"use client";
 
 import React from "react";
 import {
@@ -14,7 +14,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Person } from "../lib/person";
 import dayjs from "dayjs";
-
 
 interface PersonDialogProps {
   open: boolean;
@@ -33,7 +32,6 @@ const PersonDialog: React.FC<PersonDialogProps> = ({
 }) => {
   const [dateOpen, setDateOpen] = React.useState(false);
   return (
-  
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle>{currentPerson ? "Edit Person" : "Add Person"}</DialogTitle>
       <DialogContent>
@@ -44,7 +42,10 @@ const PersonDialog: React.FC<PersonDialogProps> = ({
           fullWidth
           value={currentPerson?.firstname || ""}
           onChange={(e) =>
-            setCurrentPerson((prev) => ({ ...prev!, firstname: e.target.value }))
+            setCurrentPerson((prev) => ({
+              ...prev!,
+              firstname: e.target.value,
+            }))
           }
         />
         <TextField
@@ -69,12 +70,13 @@ const PersonDialog: React.FC<PersonDialogProps> = ({
           <DatePicker
             label="Date of Birth"
             open={dateOpen}
-            onClose={()=>setDateOpen(false)}
+            onClose={() => setDateOpen(false)}
             slotProps={{
               textField: {
                 fullWidth: true,
                 size: "medium",
-                error: currentPerson && !currentPerson?.date_of_birth ? true : false,
+                error:
+                  currentPerson && !currentPerson?.date_of_birth ? true : false,
                 onClick: () => setDateOpen(true),
               },
             }}
@@ -86,7 +88,7 @@ const PersonDialog: React.FC<PersonDialogProps> = ({
             }}
           />
         </LocalizationProvider>
-  
+
         {/* <DateRange label="Basic date picker" /> */}
       </DialogContent>
       <DialogActions>
@@ -99,6 +101,6 @@ const PersonDialog: React.FC<PersonDialogProps> = ({
       </DialogActions>
     </Dialog>
   );
-}
+};
 
 export default PersonDialog;
