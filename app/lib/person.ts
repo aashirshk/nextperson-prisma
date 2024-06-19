@@ -5,13 +5,13 @@ export interface Person {
     firstname: string;
     lastname: string;
     phone: string;
-    date_of_birth: Dayjs | null
+    date_of_birth: Date // Change the type to Date.
 }
 
-export interface PersonResponse {
-    id: number;
-    firstname: string;
-    lastname: string;
-    phone: string;
-    date_of_birth: string
-}
+// export interface PersonResponse {
+//     id: number;
+//     firstname: string;
+//     lastname: string;
+//     phone: string;
+//     date_of_birth: string
+// }

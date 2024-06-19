@@ -1,15 +1,16 @@
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-import { Person, PersonResponse } from "../../lib/person";
+import { Person } from "../../lib/person";
+// import { prisma } from "@/app/database/client";
 
 const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest, res: NextResponse) {
   const people = await prisma.person.findMany();
-  const final_people = people.map((p) => {
-    return { ...p, date_of_birth: p.date_of_birth.toLocaleDateString() };
-  });
-  return new Response(JSON.stringify(final_people), {
+  // const final_people = people.map((p) => {
+  //   return { ...p, date_of_birth: p.date_of_birth.toLocaleDateString() };
+  // });
+  return new Response(JSON.stringify(people), {
     status: 200,
     headers: {
       "Content-Type": "application/json",
@@ -36,13 +37,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
       },
     });
 
-    const personResponse: PersonResponse = {
-      ...person,
-      date_of_birth: person.date_of_birth.toLocaleDateString(),
-    };
-
     //return the data record
-    return new Response(JSON.stringify(personResponse), {
+    return new Response(JSON.stringify(person), {
       status: 202,
     });
   } catch (error) {

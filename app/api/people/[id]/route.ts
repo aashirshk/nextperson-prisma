@@ -1,8 +1,12 @@
 //create a get method that will take id from the context , search for the id from prisma
 //if found return the data record
 
-import { PersonResponse } from "@/app/lib/person";
+// import { PersonResponse } from "@/app/lib/person";
 import { PrismaClient } from "@prisma/client";
+import { prisma_client } from "@/app/database/client";
+
+
+// console.log(prisma_client)
 
 const prisma = new PrismaClient();
 
@@ -59,12 +63,12 @@ export async function PUT(request: Request, context: any) {
       });
     }
 
-    const updatePersonResponse: PersonResponse = {
-      ...updatedPerson,
-      date_of_birth: updatedPerson.date_of_birth.toLocaleDateString(),
-    };
+    // const updatePersonResponse: PersonResponse = {
+    //   ...updatedPerson,
+    //   date_of_birth: updatedPerson.date_of_birth.toLocaleDateString(),
+    // };
 
-    return new Response(JSON.stringify(updatePersonResponse), {
+    return new Response(JSON.stringify(updatedPerson), {
       status: 200,
       headers: {
         "Content-Type": "application/json",

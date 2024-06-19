@@ -1,8 +1,16 @@
 //'use client'
 
-import React from 'react';
-import { Paper, Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
-import { Person } from '../lib/person';
+import React from "react";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Button,
+} from "@mui/material";
+import { Person } from "../lib/person";
 
 interface PersonTableProps {
   people: Person[];
@@ -10,7 +18,11 @@ interface PersonTableProps {
   handleDelete: (id: number) => void;
 }
 
-const PersonTable: React.FC<PersonTableProps> = ({ people, handleOpen, handleDelete }) => (
+const PersonTable: React.FC<PersonTableProps> = ({
+  people,
+  handleOpen,
+  handleDelete,
+}) => (
   <Paper>
     <Table>
       <TableHead>
@@ -23,12 +35,12 @@ const PersonTable: React.FC<PersonTableProps> = ({ people, handleOpen, handleDel
         </TableRow>
       </TableHead>
       <TableBody>
-        {people.map(person => (
+        {people.map((person) => (
           <TableRow key={person.id}>
             <TableCell>{person.firstname}</TableCell>
             <TableCell>{person.lastname}</TableCell>
             <TableCell>{person.phone}</TableCell>
-            <TableCell>{person.date_of_birth?.toString()}</TableCell>
+            <TableCell>{new Date(person.date_of_birth).toLocaleDateString()}</TableCell>
             <TableCell>
               <Button onClick={() => handleOpen(person)}>Edit</Button>
               <Button onClick={() => handleDelete(person.id)}>Delete</Button>

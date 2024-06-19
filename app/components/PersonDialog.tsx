@@ -10,7 +10,7 @@ import {
   Button,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { LocalizationProvider } from "@mui/x-date-pickers";
+import { DateTimeField, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Person } from "../lib/person";
 import dayjs from "dayjs";
@@ -81,10 +81,10 @@ const PersonDialog: React.FC<PersonDialogProps> = ({
               },
             }}
             value={
-              currentPerson ? dayjs(currentPerson?.date_of_birth) : dayjs("")
+              dayjs(currentPerson?.date_of_birth) || dayjs()
             }
             onChange={(value) => {
-              setCurrentPerson((prev) => ({ ...prev!, date_of_birth: value }));
+              setCurrentPerson((prev) => ({ ...prev!, date_of_birth: value!.toDate() }));
             }}
           />
         </LocalizationProvider>
