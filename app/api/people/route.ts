@@ -3,10 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { Person } from "../../lib/person";
 // import { prisma } from "@/app/database/client";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
+import { prisma_client } from "@/app/database/client";
 
 export async function GET(req: NextRequest, res: NextResponse) {
-  const people = await prisma.person.findMany();
+  const people = await prisma_client.person.findMany();
   // const final_people = people.map((p) => {
   //   return { ...p, date_of_birth: p.date_of_birth.toLocaleDateString() };
   // });
@@ -28,7 +29,7 @@ export async function POST(req: NextRequest, res: NextResponse) {
       });
     }
 
-    const person = await prisma.person.create({
+    const person = await prisma_client.person.create({
       data: {
         firstname,
         lastname,

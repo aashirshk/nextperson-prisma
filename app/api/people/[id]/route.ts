@@ -8,12 +8,12 @@ import { prisma_client } from "@/app/database/client";
 
 // console.log(prisma_client)
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 export async function GET(request: Request, context: any) {
   const { id } = context.params;
 
-  const person = await prisma.person.findUnique({
+  const person = await prisma_client.person.findUnique({
     where: {
       id: parseInt(id),
     },
@@ -44,7 +44,7 @@ export async function PUT(request: Request, context: any) {
       });
     }
 
-    const updatedPerson = await prisma.person.update({
+    const updatedPerson = await prisma_client.person.update({
       where: {
         id: parseInt(id),
       },
@@ -84,7 +84,7 @@ export async function DELETE(request: Request, context: any) {
   const { id } = context.params;
 
   try {
-    const deletedPerson = await prisma.person.delete({
+    const deletedPerson = await prisma_client.person.delete({
       where: {
         id: parseInt(id),
       },
